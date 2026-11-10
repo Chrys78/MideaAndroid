@@ -1,0 +1,30 @@
+plugins {
+    id 'com.android.application'
+    id 'com.chaquo.python'
+}
+
+android {
+    namespace 'hu.chrys78.midea'
+    compileSdk 36
+
+    defaultConfig {
+        applicationId 'hu.chrys78.midea'
+        minSdk 24
+        targetSdk 30
+        versionCode 1
+        versionName '1.0.0'
+
+        ndk {
+            abiFilters 'arm64-v8a', 'armeabi-v7a'
+        }
+    }
+}
+
+chaquopy {
+    defaultConfig {
+        version = "3.11"
+        pip {
+            install "midea-beautiful-air==0.10.7"
+        }
+    }
+}
