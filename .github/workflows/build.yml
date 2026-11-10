@@ -20,6 +20,17 @@ jobs:
           distribution: temurin
           java-version: '17'
 
+      - name: Python 3.11 telepítése
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Python ellenőrzése
+        run: |
+          python --version
+          python3.11 --version
+          which python3.11
+
       - name: Gradle beállítása
         uses: gradle/actions/setup-gradle@v4
         with:
@@ -33,7 +44,7 @@ jobs:
       - name: Android SDK licencek
         run: |
           SDKMANAGER=$(find "$ANDROID_HOME/cmdline-tools" -name sdkmanager -type f | head -n 1)
-          yes | "$SDKMANAGER" --licenses
+          yes | "$SDKMANAGER" --licenses || true
 
       - name: Android SDK komponensek
         run: |
